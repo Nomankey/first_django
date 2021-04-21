@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if is_user_authenticated %}
+    <h1>{{username}}님, 학생 신원 조회 성공 !</h1> 
+    {% else %}
+    <h1>{{username}}님, 학생 신원 조회 실패 !</h1>
+    {% endif %}
+    <h2>공백포함: {{length}}, 공백제외: {{s_length}}</h2>
+    <br/>
+    <form action="{% url 'rollback' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">돌아가기</button>
+    </form>
+    <br />
+    <form action="{% url 'add_student'%}" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="추가할 학생은 누구?" name="username"/>
+        <button type="submit">돌아가기</button>
+    </form>
+</body>
+</html>
